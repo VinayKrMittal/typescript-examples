@@ -6,6 +6,13 @@ interface IUserInfo{
     email?:string;
 }
 
+
+type MakeCapitalize<T> = {[K in keyof T as K extends string ? `user${Capitalize<K>}` : never]: T[K]};
+
+
+type IUserInfoWithCapitalize = MakeCapitalize<IUserInfo>;
+
+
 // === Required to Make new type helper
 /**
  * {
@@ -17,8 +24,3 @@ interface IUserInfo{
  * }
  * 
  */
-
-type MakeCapitalize<T> = {[K in keyof T as K extends string ? `user${Capitalize<K>}` : never]: T[K]};
-
-
-type IUserInfoWithCapitalize = MakeCapitalize<IUserInfo>;
